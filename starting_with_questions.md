@@ -68,7 +68,7 @@ Answer:
 Cities and Countries with highest level of transaction revenues on the site:
 -Seattle-USA-$358.00
 -New York-USA-$164.00
--Mountain View-16$.99
+-Mountain View-USA-16$.99
 
 
 
@@ -78,10 +78,26 @@ Cities and Countries with highest level of transaction revenues on the site:
 
 
 SQL Queries:
+```sql
+SELECT DISTINCT 
+	country,	
+	city, 
+	ROUND(AVG(units_sold)) AS avg_units_sold
+FROM cte_sessions
+JOIN cte_analytics USING(vid)
+GROUP BY country, city
+ORDER BY country, city, avg_units_sold DESC
+```
 
 
 
 Answer:
+Average number of products ordered from visitors in each city and country
+- USA, Seattle - 2
+- USA, New York - 2
+- USA, Mountain View - 1
+
+
 
 
 
@@ -91,10 +107,20 @@ Answer:
 
 
 SQL Queries:
+```sql
+SELECT 
+	p.name,
+	total_ordered,
+	productsku
+FROM sales_report
+JOIN products p ON p.sku = productsku
+Order BY total_ordered DESC
+```
 
 
 
 Answer:
+The most sold item is clothing.
 
 
 
@@ -104,10 +130,34 @@ Answer:
 
 
 SQL Queries:
+```sql
+SELECT 
+	country, 
+	city, 
+	sku, 
+	p.name,
+	times_sold,
+	MAX(total_sold) AS top_sales
+FROM (
+	SELECT
+		s.country,
+		s.city,
+		s.sku,
+		COUNT(s.sku) AS times_sold,
+		SUM(s.qty) AS total_sold
+	FROM cte_sessions s
+	GROUP BY s.country, s.city, s.sku
+	ORDER BY s.country, s.city, s.sku
+) as sessions
+JOIN cte_products p USING(sku)
+GROUP BY country, city, sku, p.name, total_sold, times_sold
+ORDER BY total_sold DESC, country, city
+```
 
 
 
 Answer:
+-"Dress socks" from Spain-Madrid are the top selling products, in the products sold we notice the majority of purchases are in USA.
 
 
 
@@ -116,10 +166,23 @@ Answer:
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
 
 SQL Queries:
+```sql
+SELECT 
+	country,
+	city,
+	ROUND(revenue::DECIMAL/1000000, 2) AS revenue
+FROM analytics
+JOIN all_sessions USING(fullvisitorid)
+WHERE revenue::DECIMAL > 0
+AND city != 'not available in demo dataset'
+ORDER BY revenue DESC, country, city
+```
+
 
 
 
 Answer:
+USA-San Francisco-$359.00 is the city with the highest revenue, majority of the purchases are in USA, and there are a lot of purchases with unknown location.
 
 
 
