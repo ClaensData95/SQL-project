@@ -1,17 +1,17 @@
 # Final-Project-Transforming-and-Analyzing-Data-with-SQL
 
 ## Project/Goals
-(fill in your description and goals here)
+The project is about an ecommerce database, the challenge is to import the data(csv files) to pgadmin,and get useful insights from the data we have available.
 
 ## Process
-### (your step 1)
-### (your step 2)
+### Import the csv files to pgadmin to create the tables
+### Organize and clean and structure the data for analysis
 
 ## Results
-(fill in what you discovered this data could tell you and how you used the data to answer those questions)
+After some cleaning process , we got to a point where we could make some sense of the data and run some queries to get insights, answer questions.
 
 ## Challenges 
-(discuss challenges you faced in the project)
+There were many challenges including empty columns from tables, duplicates.
 
 ## Future Goals
-(what would you do if you had more time?)
+If I have more time I would attempt to clean the data for further investigation, and find ways to create conncetions between the tables to get more insights.
