@@ -66,9 +66,9 @@ ORDER BY sum_of_transactions DESC
 
 Answer:
 Cities and Countries with highest level of transaction revenues on the site:
--Seattle-USA-$358.00
--New York-USA-$164.00
--Mountain View-USA-16$.99
+-Seattle-United States-$358.00
+-New York-United States-$164.00
+-Mountain View-United States-16$.99
 
 
 
@@ -93,9 +93,9 @@ ORDER BY country, city, avg_units_sold DESC
 
 Answer:
 Average number of products ordered from visitors in each city and country
-- USA, Seattle - 2
-- USA, New York - 2
-- USA, Mountain View - 1
+- United States, Seattle - 2
+- United States, New York - 2
+- United States, Mountain View - 1
 
 
 
