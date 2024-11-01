@@ -1,8 +1,14 @@
-Question 1: 
+Question 1: Identify Primary key in products table
 
 SQL Queries:
+```sql
+SELECT count(sku) FROM products
+GROUP BY sku
+HAVING count(sku) > 1
+```
 
-Answer: 
+
+Answer:product.sku is the unique identifier. 
 
 
 
